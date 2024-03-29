@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # Third Party
     'rest_framework',
     'drf_spectacular',
+    'import_export',
 ]
 
 REST_FRAMEWORK = {

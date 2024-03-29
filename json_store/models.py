@@ -6,3 +6,6 @@ class WifiJson(models.Model):
 
     class Meta:
         db_table="WifiJson"
+    
+    def __str__(self):
+        return self.name
