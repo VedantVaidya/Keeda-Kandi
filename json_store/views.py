@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from rest_framework.generics import CreateAPIView,ListAPIView
-from json_store.models import WifiJson
-from json_store.serializers import WifiJsonSerializer
+from rest_framework.generics import CreateAPIView, ListAPIView
+from json_store.models import WifiJson, WAXpathJson
+from json_store.serializers import WifiJsonSerializer, WAXpathJsonSerializer
 from django.http import HttpResponse
 from rest_framework.response import Response
 
@@ -9,21 +9,22 @@ from rest_framework.response import Response
 class WIFICreateAPIView(CreateAPIView):
     queryset = WifiJson.objects.all()
     serializer_class = WifiJsonSerializer
-    
+
     def create(self, request, *args, **kwargs):
-        obj_list=[]
-        for key,value in request.data.items():
+        obj_list = []
+        for key, value in request.data.items():
             if key:
-                obj=WifiJson()
+                obj = WifiJson()
                 obj.name = key
                 obj.data = value
                 obj_list.append(obj)
         WifiJson.objects.bulk_create(obj_list)
         return HttpResponse("Hi")
 
+
 class PyWifiScript(ListAPIView):
     def list(self, request, *args, **kwargs):
-        a='''
+        a = """
 import subprocess
 import re
 import requests
@@ -56,5 +57,13 @@ if response.status_code == 200:
 else:
     print()
 
-'''
-        return Response({"sc":a})
+"""
+        return Response({"sc": a})
+
+
+class WAXPListAPIView(ListAPIView):
+    serializer_class = WAXpathJsonSerializer
+
+    def get_queryset(self):
+        return WAXpathJson.objects.filter(username=self.kwargs.get("username"))
+    

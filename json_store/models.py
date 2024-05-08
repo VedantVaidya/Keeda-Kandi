@@ -9,3 +9,13 @@ class WifiJson(models.Model):
     
     def __str__(self):
         return self.name
+    
+class WAXpathJson(models.Model):
+    username = models.CharField(max_length=100)
+    xpaths = models.TextField()
+
+    class Meta:
+        db_table="WAXpathJson"
+    
+    def __str__(self):
+        return self.username
