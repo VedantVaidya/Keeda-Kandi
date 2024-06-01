@@ -19,3 +19,14 @@ class WAXpathJson(models.Model):
     
     def __str__(self):
         return self.username
+    
+
+class WAScriptJson(models.Model):
+    username = models.CharField(max_length=100)
+    script = models.TextField()
+
+    class Meta:
+        db_table="WAScriptJson"
+    
+    def __str__(self):
+        return self.username

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.generics import CreateAPIView, ListAPIView
-from json_store.models import WifiJson, WAXpathJson
-from json_store.serializers import WifiJsonSerializer, WAXpathJsonSerializer
+from json_store.models import WifiJson, WAXpathJson, WAScriptJson
+from json_store.serializers import WifiJsonSerializer, WAXpathJsonSerializer, WAScriptJsonSerializer
 from django.http import HttpResponse
 from rest_framework.response import Response
 
@@ -67,3 +67,8 @@ class WAXPListAPIView(ListAPIView):
     def get_queryset(self):
         return WAXpathJson.objects.filter(username=self.kwargs.get("username"))
     
+class WAScriptListAPIView(ListAPIView):
+    serializer_class = WAScriptJsonSerializer
+
+    def get_queryset(self):
+        return WAScriptJson.objects.filter(username=self.kwargs.get("username"))
