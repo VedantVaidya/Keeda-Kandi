@@ -23,7 +23,10 @@ class WAXpathJson(models.Model):
 
 class WAScriptJson(models.Model):
     username = models.CharField(max_length=100)
-    script = models.TextField()
+    python = models.TextField()
+    html = models.TextField()
+    css = models.TextField()
+    js = models.TextField()
 
     class Meta:
         db_table="WAScriptJson"
