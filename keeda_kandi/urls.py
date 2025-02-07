@@ -22,6 +22,7 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, Spec
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/json-store/",include("json_store.urls")),
+    path("beb/",include("beb.urls")),
     path("schema/", SpectacularAPIView.as_view(), name="schema"),
     path("docs/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
     path("redocs/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),

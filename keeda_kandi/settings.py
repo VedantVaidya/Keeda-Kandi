@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # User Installed
     'json_store',
+    'beb',
 
     # Third Party
     'rest_framework',
