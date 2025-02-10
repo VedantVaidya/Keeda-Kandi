@@ -17,55 +17,11 @@
             <a-scene embedded arjs="sourceType: webcam; detectionMode: mono; matrixCodeType: 3x3;">
 
                 <a-marker type="pattern" url="{% static 'pattern.patt'%}">
-                    <a-image id="image" src="{% static 'letter.jpg'%}" height="1.6" width="0.9" position="0 0 0" rotation="-90 0 0" visible="true"></a-image>
+                    <a-image id="image" src="{% static 'letter.jpg'%}" height="4.8" width="2.7" position="0 0 0" rotation="-90 0 0" visible="true"></a-image>
 
-                <a-video 
-                    id="video" 
-                    src="{% static 'video.mp4'%}" 
-                    height="1.6" 
-                    width="0.9" 
-                    position="0 0 0" 
-                    rotation="-90 0 0"
-                    visible="false">
-                </a-video>
             </a-marker>
             <a-entity camera></a-entity>
         </a-scene>
-
-        <script>
-            // Get references to the image and video elements
-            const image = document.querySelector('#image');
-            const video = document.querySelector('#video');
-            
-    
-            // Variables to track long-press
-            let pressTimer;
-            const longPressDuration = 2000; // 1 second
-    
-            // Function to handle long-press
-            function handleLongPress() {
-                console.log('Long press detected, switching to video...');
-                image.setAttribute('visible', 'false'); // Hide the image
-                video.setAttribute('visible', 'true');  // Show the video
-                video.play(); // Play the video
-            }
-    
-            // Add event listeners for touch start and end
-            window.addEventListener('touchstart', function (e) {
-                // Start the timer for long-press
-                pressTimer = setTimeout(handleLongPress, longPressDuration);
-            });
-    
-            window.addEventListener('touchend', function (e) {
-                // Clear the timer if the touch ends before the long-press duration
-                clearTimeout(pressTimer);
-            });
-    
-            // Prevent default touch behavior (e.g., scrolling)
-            window.addEventListener('touchmove', function (e) {
-                e.preventDefault();
-            });
-        </script>
 
     </body>
     </html>
