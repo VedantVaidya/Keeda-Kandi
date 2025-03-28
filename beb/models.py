@@ -1,3 +1,9 @@
 from django.db import models
 
-# Create your models here.
+
+class MyJSON(models.Model):
+    data=models.JSONField()
+
+    class Meta:
+        db_table="MyJSON"
+    
