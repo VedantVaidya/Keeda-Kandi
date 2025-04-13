@@ -8,8 +8,8 @@ def valentine_template(request):
     return HttpResponse("Reached here")
 
 def birthday(request):
-    status = models.MyJSON.objects.get(id=2)
-    vid = models.MyJSON.objects.get(id=1)
+    status = models.MyJSON.objects.get(key="propose_status")
+    vid = models.MyJSON.objects.get(key="propose_links")
     on_vid = vid.data["on"]
     off_vid = vid.data["off"]
     if status.data['status']:
